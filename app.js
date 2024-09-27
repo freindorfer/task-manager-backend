@@ -12,11 +12,11 @@ app.use(cors());
 
 // Configuração da conexão com o PostgreSQL
 const pool = new Pool({
-  user: 'postgres', // Usuário do PostgreSQL (provavelmente "postgres")
-  host: 'localhost', // Se o banco de dados estiver rodando localmente
-  database: 'task_manager', // O nome do banco de dados que você criou
-  password: '20771895', // A senha que você definiu para o usuário postgres
-  port: 5432, // A porta padrão do PostgreSQL
+  user: process.env.DATABASE_USER,
+  host: process.env.DATABASE_HOST,
+  database: process.env.DATABASE_NAME,
+  password: process.env.DATABASE_PASSWORD,
+  port: 5432, // Porta padrão do PostgreSQL
 });
 
 // Testar a conexão ao PostgreSQL
