@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { Pool } = require('pg');
+require('dotenv').config();  // Certifique-se de carregar as variáveis de ambiente
 
 const app = express();
 const port = 3000;
@@ -22,10 +23,10 @@ const pool = new Pool({
 // Testar a conexão ao PostgreSQL
 pool.connect((err, client, release) => {
   if (err) {
-    return console.error('Erro ao conectar ao banco de dados:', err.stack);
+    console.error('Erro ao conectar ao banco de dados:', err.stack);
+  } else {
+    console.log('Conectado ao banco de dados PostgreSQL');
   }
-  console.log('Conectado ao banco de dados PostgreSQL');
-  release();
 });
 
 // Definir um endpoint básico para testar o servidor
