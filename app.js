@@ -50,10 +50,10 @@ app.post('/tasks', async (req, res) => {
       'INSERT INTO tasks (title, description, due_date) VALUES ($1, $2, $3) RETURNING *',
       [title, description, dueDate]
     );
-    res.json(newTask.rows[0]);
+    res.status(200).json(newTask.rows[0]); // Retornar status 201 Created e a tarefa criada
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Erro no servidor');
+    console.error('Erro ao adicionar a tarefa:', err.message);
+    res.status(500).json({ error: 'Erro ao adicionar a tarefa' }); // Retornar uma mensagem de erro com status 500
   }
 });
 
